@@ -55,6 +55,6 @@ CREATE TABLE IF NOT EXISTS order_items (
     quantity INT NOT NULL,
     FOREIGN KEY (order_id) REFERENCES orders(id),
     FOREIGN KEY (product_id) REFERENCES products(id),
-    CHECK (quantity > 0)  -- Garante que a quantidade seja positiva
+    CHECK (quantity > 0),  -- Ensures quantity is positive
+    CONSTRAINT "unique_product_order" UNIQUE (order_id, product_id) -- Adds a UNIQUE constraint to prevent the same product from being added more than once in an order
 );
-
