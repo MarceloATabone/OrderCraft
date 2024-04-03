@@ -1,0 +1,41 @@
+version: '3.9'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8000:80"
+    volumes:
+      - ./backend/app:/var/www/html
+    networks:
+      - orderCraft-network
+
+  database:
+    image: 'postgres:15.2'
+    container_name: 'orderCraft-database'
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password32145
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    ports:
+      - '5448:5432'
+    networks:
+      - orderCraft-network
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+      - ./database/sql/createDatabase.sql:/docker-entrypoint-initdb.d/00_createDatabase.sql
+      - ./database/sql/functions.sql:/docker-entrypoint-initdb.d/01_functions.sql
+      - ./database/sql/schema.sql:/docker-entrypoint-initdb.d/02_schema.sql
+      - ./database/sql/triggers.sql:/docker-entrypoint-initdb.d/03_triggers.sql
+
+networks:
+  orderCraft-network:
+    name: "orderCraft-network"
+    ipam:
+      config:
+        - subnet: 172.30.0.0/24
