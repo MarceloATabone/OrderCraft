@@ -1,3 +1,4 @@
+
 -- Trigger to update the modified time for the user table before an update
 CREATE TRIGGER update_user_modtime
 BEFORE UPDATE ON public.user

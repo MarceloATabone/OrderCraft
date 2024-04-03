@@ -1,16 +1,8 @@
-
--- CREATE DATABASE (if needed) --
-CREATE DATABASE order_craft;
-
--- Connect to the database --
-\c order_craft;
-
 -- CREATE EXTENSIONS (if needed) --
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
-
 -- Define a user table 
-CREATE TABLE IF NOT EXISTS users (
+CREATE TABLE IF NOT EXISTS "user" (
     id SERIAL PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
@@ -44,7 +36,7 @@ CREATE TABLE IF NOT EXISTS orders (
     price DECIMAL(10, 2),
 	created_at timestamp NOT NULL DEFAULT current_timestamp,
 	updated_at timestamp DEFAULT current_timestamp,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES "user"(id)
 );
 
 -- Define a order_items table

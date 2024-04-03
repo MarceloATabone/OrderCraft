@@ -24,8 +24,7 @@ services:
         ipv4_address: 172.30.0.2
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
+      - ./sql/createDatabase.sql:/docker-entrypoint-initdb.d/00_createDatabase.sql
+      - ./sql/functions.sql:/docker-entrypoint-initdb.d/01_functions.sql
       - ./sql/schema.sql:/docker-entrypoint-initdb.d/02_schema.sql
-
-      #- ./sql/Functions.sql:/docker-entrypoint-initdb.d/01_functions.sql
-      #- ./sql/schema.sql:/docker-entrypoint-initdb.d/schema.sql
-      #- ./sql/Triggers.sql:/docker-entrypoint-initdb.d/03_triggers.sql
+      - ./sql/triggers.sql:/docker-entrypoint-initdb.d/03_triggers.sql
