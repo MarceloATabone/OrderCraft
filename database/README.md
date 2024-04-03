@@ -6,7 +6,9 @@
 
 <hr>
 
-# UML
+# Diagramm
+
+ -![alt text](diagram/diagram.png) 
 
 
 <hr>
