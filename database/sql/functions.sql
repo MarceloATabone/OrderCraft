@@ -1,3 +1,4 @@
+\c order_craft;
 
 -- Trigger to check if the product exists and if there is sufficient quantity in stock
 CREATE OR REPLACE FUNCTION check_product_stock()

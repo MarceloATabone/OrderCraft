@@ -1,3 +1,5 @@
+\c order_craft;
+
 -- CREATE EXTENSIONS (if needed) --
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
