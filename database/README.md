@@ -14,7 +14,7 @@
 <hr>
 </div>
 
-### RUN LOCAL
+### RUN 
 - make sure you are in the database folder
 
 ```bash

@@ -1,11 +1,19 @@
 
+<div style="text-align: center;"><h1 style="color:blue"> ORDER CRAFT  </h1><hr> 
 
-# ORDER CRAFT 
+#### Creating PROJECT IN php and Postgres DB with Docker Compose
+
+#### POSTGRES Version: 15.2 - PHP 8.2
+
+<hr>
 
 
 
-### RUN LOCAL
-- make sure you are in the database folder
+### RUN ALL PROJECT in DOCKER
+
+```bash
+sudo docker-compose up --build
+
 
 ```bash
 sudo docker-compose up
