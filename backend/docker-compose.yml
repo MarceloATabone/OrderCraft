@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+  backend:
+    build: .
+    ports:
+      - "8000:80"
+    volumes:
+      - ./app:/var/www/html
+networks:
+  orderCraft-network:
+    name: "orderCraft-network"
