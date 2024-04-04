@@ -4,7 +4,7 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- Define a user table 
-CREATE TABLE IF NOT EXISTS "user" (
+CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS orders (
     price DECIMAL(10, 2),
 	created_at timestamp NOT NULL DEFAULT current_timestamp,
 	updated_at timestamp DEFAULT current_timestamp,
-    FOREIGN KEY (user_id) REFERENCES "user"(id)
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 -- Define a order_items table

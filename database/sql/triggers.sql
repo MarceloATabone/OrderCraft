@@ -2,7 +2,7 @@
 
 -- Trigger to update the modified time for the user table before an update
 CREATE TRIGGER update_user_modtime
-BEFORE UPDATE ON public.user
+BEFORE UPDATE ON public.users
 FOR EACH ROW
 EXECUTE FUNCTION update_updated_at_column();
 

@@ -10,7 +10,7 @@ services:
       - ./backend/app:/var/www/html
     networks:
       orderCraft-network:
-        ipv4_address: 172.30.0.2
+        ipv4_address: 172.30.0.3
 
   database:
     image: 'postgres:15.2'
@@ -27,7 +27,7 @@ services:
       - '5448:5432'
     networks:
       orderCraft-network:
-        ipv4_address: 172.30.0.3
+        ipv4_address: 172.30.0.2
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
       - ./database/sql/createDatabase.sql:/docker-entrypoint-initdb.d/00_createDatabase.sql
