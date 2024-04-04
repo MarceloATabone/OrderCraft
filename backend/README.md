@@ -1,19 +1,17 @@
 
-<div style="text-align: center;"><h1 style="color:blue"> ORDER CRAFT  </h1><hr> 
+<div style="text-align: center;"><h1 style="color:blue"> Backend </h1><hr> 
 
-#### Creating PROJECT IN php and Postgres DB with Docker Compose
+#### PHP 8.2
 
-#### POSTGRES Version: 15.2 - PHP 8.2
+</div>
 
 <hr>
-
-
 
 ### RUN ALL PROJECT in DOCKER
 
 ```bash
 sudo docker-compose up --build
-
+```
 
 ```bash
 sudo docker-compose up
@@ -27,9 +25,7 @@ sudo docker-compose down
 ```bash
 sudo docker system prune -a
 ```
-```bash
-sudo rm -r postgres-data/
-```
+
 
 <hr>
 

@@ -3,9 +3,15 @@ services:
   backend:
     build: .
     ports:
-      - "8000:80"
+      - "8080:8080"
     volumes:
-      - ./app:/var/www/html
+      - ./src:/var/www/html
+    networks:
+      orderCraft-network:
+        ipv4_address: 172.30.0.3
 networks:
   orderCraft-network:
     name: "orderCraft-network"
+    ipam:
+      config:
+        - subnet: 172.30.0.0/24
