@@ -13,12 +13,7 @@ switch ($path) {
     case '/api/user':
         if ($method === 'GET') {
             $userController->listUsers();
-        } else {
-            ErrorResponse::sendError(ErrorCode::METHOD_NOT_ALLOWED);
-        }
-        break;
-    case '/api/user/create':
-        if ($method === 'POST') {
+        } else if ($method === 'POST') {
             $userController->createUser();
         } else {
             ErrorResponse::sendError(ErrorCode::METHOD_NOT_ALLOWED);

@@ -14,16 +14,17 @@ class UserRepository
 
     public function getAllUsers()
     {
-        $stmt = $this->connection->query("SELECT * FROM users");
+        $stmt = $this->connection->query("SELECT id, first_name, last_name, document, email, phone_number, birth_date, created_at, updated_at FROM users WHERE role_id != 1");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 
     public function createUser($user)
     {
-        $query = "INSERT INTO users (first_name, last_name, document, email, password, phone_number, birth_date) VALUES (:first_name, :last_name, :document, :email, :password, :phone_number, :birth_date)";
+        $query = "INSERT INTO users (role_id, first_name, last_name, document, email, password, phone_number, birth_date) VALUES (:role_id,:first_name, :last_name, :document, :email, :password, :phone_number, :birth_date)";
         $stmt = $this->connection->prepare($query);
         $stmt->execute([
+            ':role_id' => $user->role_id,
             ':first_name' => $user->first_name,
             ':last_name' => $user->last_name,
             ':document' => $user->document,

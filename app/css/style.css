@@ -1,0 +1,17 @@
+.dashboard-sidebar {
+    height: 100vh;
+    min-width: 200px;
+    position: fixed;
+    padding: 20px;
+    top: 0;
+    left: 0;
+}
+
+.dashboard-content {
+    margin-left: 250px;
+    margin-bottom: 10px;
+}
+
+.list-group-item {
+    margin-bottom: 10px;
+}

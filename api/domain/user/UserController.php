@@ -34,6 +34,7 @@ class UserController
         $encryptedPassword = $this->secretService->encrypt($data->password, $data->passwordVerify);
 
         if ($encryptedPassword['success']) {
+            $data->role_id = 2;
             $data->password = $encryptedPassword['data'];
             $this->userRepository->createUser($data);
             echo json_encode(array('message' => 'User created successfully'));
@@ -66,6 +67,4 @@ class UserController
         $this->userRepository->deleteUser($userId);
         echo json_encode(array('message' => 'User deleted successfully'));
     }
-
-
 }

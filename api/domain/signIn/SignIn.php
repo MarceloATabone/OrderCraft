@@ -29,12 +29,13 @@ class SignIn
         # MOKE  ADMIN = 1 login OK
         # MOKE  not using password verify as there is no secret encrypt in this version
 
+
         $user = $this->userRepository->getUserByEmail($data->email);
 
-        if ($user['role_id'] === 1 && $user['password'] === $data->password) {
+        if ($user && $user['role_id'] === 1 && $user['password'] === $data->password) {
             echo json_encode(array('message' => 'Sign in successful', 'user' => $user));
         } else {
-            echo json_encode(array('error' => 'Invalid credentials'));
+            ErrorResponse::sendError(ErrorCode::BAD_REQUEST, 'Invalid credentials');
         }
     }
 }
