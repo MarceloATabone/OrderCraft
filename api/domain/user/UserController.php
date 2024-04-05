@@ -1,15 +1,18 @@
 <?php
 
+require_once 'utils/SecretService.php';
 require_once 'UserRepository.php';
 require_once 'User.php';
 
 class UserController
 {
     private $userRepository;
+    private $secretService;
 
     public function __construct()
     {
         $this->userRepository = new UserRepository();
+        $this->secretService = new SecretService();
     }
 
     // Method to list all users
@@ -23,24 +26,20 @@ class UserController
     public function createUser()
     {
         $data = json_decode(file_get_contents("php://input"));
-        
-        if (!($data instanceof User)) {
+        if (!isset($data->first_name) || !isset($data->last_name) || !isset($data->document) || !isset($data->email) || !isset($data->password) || !isset($data->passwordVerify) || !isset($data->phone_number) || !isset($data->birth_date)) {
             ErrorResponse::sendError(ErrorCode::BAD_REQUEST);
             return;
         }
 
+        $encryptedPassword = $this->secretService->encrypt($data->password, $data->passwordVerify);
 
-        // Se algum campo estiver faltando, retorna erro
-        if (!empty($missingFields)) {
-            ErrorResponse::sendError(ErrorCode::BAD_REQUEST, 'Missing fields: ' . implode(', ', $missingFields));
-            return;
+        if ($encryptedPassword['success']) {
+            $data->password = $encryptedPassword['data'];
+            $this->userRepository->createUser($data);
+            echo json_encode(array('message' => 'User created successfully'));
+        } else {
+            echo json_encode(array('error' => $encryptedPassword['error']));
         }
-
-
-        $userRepository = new UserRepository();
-        $userRepository->createUser($data);
-
-        echo json_encode(array('message' => 'User created successfully'));
     }
 
 
@@ -67,4 +66,6 @@ class UserController
         $this->userRepository->deleteUser($userId);
         echo json_encode(array('message' => 'User deleted successfully'));
     }
+
+
 }

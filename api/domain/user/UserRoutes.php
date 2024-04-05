@@ -38,7 +38,4 @@ switch ($path) {
             ErrorResponse::sendError(ErrorCode::METHOD_NOT_ALLOWED);
         }
         break;
-    default:
-        ErrorResponse::sendError(ErrorCode::ROUTE_NOT_FOUND);
-        break;
 }

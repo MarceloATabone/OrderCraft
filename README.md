@@ -9,6 +9,14 @@
 
 #### Creating PROJECT IN php and Postgres DB with Docker Compose
 
+<hr>
+
+ - Login in Front : 
+    - email: admin@admin.com
+    - password: password
+
+<hr>
+
 #### POSTGRES Version: 15.2 - PHP 8.2
 
 <hr>
