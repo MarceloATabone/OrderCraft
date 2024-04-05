@@ -1,17 +1,41 @@
 .dashboard-sidebar {
     height: 100vh;
-    min-width: 200px;
+    width: 250px;
     position: fixed;
     padding: 20px;
     top: 0;
     left: 0;
 }
 
+.user-button {
+    width: 100%;
+    white-space: nowrap; 
+    overflow: hidden;
+}
+
+.delete-btn {
+    margin-left: 5px;
+}
+
 .dashboard-content {
-    margin-left: 250px;
+    margin-left: 270px;
     margin-bottom: 10px;
 }
 
 .list-group-item {
     margin-bottom: 10px;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
 }

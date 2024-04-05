@@ -14,13 +14,13 @@ include 'includes/header.php';
 
 switch ($page) {
     case 'login':
-        include 'views/login.php'; // Corrigido o caminho do arquivo para 'views/login.php'
+        include 'views/login.php';
         break;
     case 'dashboard':
-        include 'views/dashboard.php'; // Corrigido o caminho do arquivo para 'views/dashboard.php'
+        include 'views/dashboard.php';
         break;
     default:
-        include 'views/login.php'; // Corrigido o caminho do arquivo para 'views/login.php'
+        include 'views/login.php';
         break;
 }
 

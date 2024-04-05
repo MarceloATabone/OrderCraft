@@ -15,18 +15,15 @@ switch ($path) {
             $userController->listUsers();
         } else if ($method === 'POST') {
             $userController->createUser();
-        } else {
-            ErrorResponse::sendError(ErrorCode::METHOD_NOT_ALLOWED);
-        }
-        break;
-    case '/api/user/update':
-        if ($method === 'PUT') {
+        } else if ($method === 'DELETE') {
+            $userController->deleteUser();
+        } else  if ($method === 'PUT') {
             $userController->updateUser();
         } else {
             ErrorResponse::sendError(ErrorCode::METHOD_NOT_ALLOWED);
         }
         break;
-    case '/api/user/delete':
+    case preg_match('/^\/api\/user\/[0-9]+$/', $path) ? $path : !$path:
         if ($method === 'DELETE') {
             $userController->deleteUser();
         } else {

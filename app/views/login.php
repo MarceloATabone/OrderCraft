@@ -1,11 +1,11 @@
 <!-- login.php -->
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    echo "Login form submitted"; // Verifique se este código é executado ao enviar o formulário de login
+    echo "Login form submitted";
 
     if (isset($_POST['loggedIn']) && $_POST['loggedIn'] === 'true') {
         $_SESSION['loggedIn'] = true;
-        header("Location: index.php?page=dashboard"); // Redireciona diretamente para o dashboard
+        header("Location: index.php?page=dashboard");
         exit;
     }
 }

@@ -1,8 +1,6 @@
 // dashboard.js
 
 
-
-
 $(document).ready(function () {
     $('#loginForm').submit(function (e) {
         e.preventDefault();
@@ -16,12 +14,15 @@ $(document).ready(function () {
             method: 'GET',
             success: function (response) {
                 $('#userList').empty();
-
                 response.forEach(function (user) {
-                    var userButton = $('<button class="btn btn-primary btn-block mb-2">' + user.first_name + '</button>');
-                    userButton.data('user', user);
-                    $('#userList').append(userButton);
+                    var listItem = $('<li class="list-group-item d-flex justify-content-between align-items-center">' +
+                        '<button class="btn btn-primary user-button">' + user.first_name + '</button>' +
+                        '<button class="btn btn-danger delete-btn" data-user-id="' + user.id + '">-</button>' +
+                        '</li>');
+                    listItem.data('user', user);
+                    $('#userList').append(listItem);
                 });
+
             },
             error: function (xhr, status, error) {
                 console.error(error);
@@ -32,19 +33,37 @@ $(document).ready(function () {
 
     loadUserList();
 
-
-    $('#userList').on('click', 'button', function () {
-        var userDetails = $(this).data('user');
-        $('#userDetails').html('<p>Name: ' + userDetails.first_name + '</p>' +
-            '<p>Last Name: ' + userDetails.last_name + '</p>' +
-            '<p>Email: ' + userDetails.email + '</p>' +
-            '<p>Document: ' + userDetails.document + '</p>' +
-            '<p>Phone Number: ' + userDetails.phone_number + '</p>' +
-            '<p>Birth Date: ' + userDetails.birth_date + '</p>');
+    $('#userList').on('click', '.user-button', function () {
+        var userDetails = $(this).closest('li').data('user');
+        if (userDetails) {
+            $('#userDetails').html('<p>Name: ' + userDetails.first_name + '</p>' +
+                '<p>Last Name: ' + userDetails.last_name + '</p>' +
+                '<p>Email: ' + userDetails.email + '</p>' +
+                '<p>Document: ' + userDetails.document + '</p>' +
+                '<p>Phone Number: ' + userDetails.phone_number + '</p>' +
+                '<p>Birth Date: ' + userDetails.birth_date + '</p>');
+        } else {
+            console.error('User details are undefined.');
+        }
     });
 
 
-
+    $('#userList').on('click', '.delete-btn', function () {
+        var userId = $(this).data('user-id');
+        if (confirm('Are you sure you want to delete this user?')) {
+            $.ajax({
+                url: 'api/user/' + userId,
+                method: 'DELETE',
+                success: function (response) {
+                    loadUserList();
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                    alert(xhr.responseText);
+                }
+            });
+        }
+    });
 
 
     // Event listener for New User button click
@@ -83,6 +102,3 @@ $(document).ready(function () {
     });
 
 });
-
-
-

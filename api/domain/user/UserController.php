@@ -62,8 +62,17 @@ class UserController
     }
 
     // Method to delete a user
-    public function deleteUser($userId)
+    public function deleteUser()
     {
+        $url_parts = parse_url($_SERVER['REQUEST_URI']);
+        $path_parts = explode('/', $url_parts['path']);
+        $userId = end($path_parts);
+
+        $user = $this->userRepository->getUserById($userId);
+        if (!$user) {
+            ErrorResponse::sendError(ErrorCode::ROUTE_NOT_FOUND);
+            return;
+        }
         $this->userRepository->deleteUser($userId);
         echo json_encode(array('message' => 'User deleted successfully'));
     }

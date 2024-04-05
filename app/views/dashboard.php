@@ -1,11 +1,3 @@
-<!-- dashboard.php -->
-
-<?php
-
-
-
-?>
-
 <div class="bg-light dashboard-sidebar">
     <h2 class="text-center mt-3">Users</h2>
     <button id="newUserButton" class="btn btn-success btn-block mb-2">New User</button>

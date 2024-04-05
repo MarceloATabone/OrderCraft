@@ -44,16 +44,24 @@ class UserRepository
 
     public function deleteUser($userId)
     {
-        $query = "DELETE FROM users WHERE id = ?";
+        $query = "DELETE FROM users WHERE id = ? and role_id != 1";
         $stmt = $this->connection->prepare($query);
         $stmt->execute([$userId]);
     }
 
     public function getUserByEmail($email)
     {
-        $query = "SELECT * FROM users WHERE email = ?";
+        $query = "SELECT * FROM users WHERE email = ? ";
         $stmt = $this->connection->prepare($query);
         $stmt->execute([$email]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getUserById($userId)
+    {
+        $query = "SELECT * FROM users WHERE id = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute([$userId]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
