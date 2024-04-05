@@ -1,17 +1,13 @@
 version: '3.9'
 services:
-
-  backend:
+  aplication:
     build:
-      context: ./backend
+      context: .
     ports:
-      - "8000:80"
-    volumes:
-      - ./backend/app:/var/www/html
+      - "80:80"
     networks:
       orderCraft-network:
         ipv4_address: 172.30.0.3
-
   database:
     image: 'postgres:15.2'
     container_name: 'orderCraft-database'
@@ -34,6 +30,8 @@ services:
       - ./database/sql/functions.sql:/docker-entrypoint-initdb.d/01_functions.sql
       - ./database/sql/schema.sql:/docker-entrypoint-initdb.d/02_schema.sql
       - ./database/sql/triggers.sql:/docker-entrypoint-initdb.d/03_triggers.sql
+      - ./database/sql/insertRole.sql:/docker-entrypoint-initdb.d/04_insertRole.sql
+      - ./database/sql/insertUser.sql:/docker-entrypoint-initdb.d/05_insertUser.sql
 
 networks:
   orderCraft-network:

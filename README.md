@@ -9,6 +9,14 @@
 
 #### Creating PROJECT IN php and Postgres DB with Docker Compose
 
+
+#### POSTGRES Version: 15.2 - PHP 8.2
+
+<hr>
+
+</div>
+
+
 <hr>
 
  - Login in Front : 
@@ -17,20 +25,13 @@
 
 <hr>
 
-#### POSTGRES Version: 15.2 - PHP 8.2
-
-<hr>
-
-</div>
+[readme database](database/README.md) 
 
 ### RUN ALL PROJECT in DOCKER
 
-```bash
-sudo docker-compose up --build
-```
 
 ```bash
-sudo docker-compose up
+sudo docker-compose up --build
 ```
 
 ### Clear RUN
@@ -41,7 +42,6 @@ sudo docker-compose down
 ```bash
 sudo docker system prune -a
 ```
-
 
 <hr>
 

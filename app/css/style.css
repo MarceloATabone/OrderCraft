@@ -1,6 +1,6 @@
 .dashboard-sidebar {
     height: 100vh;
-    width: 250px;
+    width: 350px;
     position: fixed;
     padding: 20px;
     top: 0;
@@ -9,16 +9,16 @@
 
 .user-button {
     width: 100%;
-    white-space: nowrap; 
+    white-space: nowrap;
     overflow: hidden;
 }
 
 .delete-btn {
-    margin-left: 5px;
+    margin-left: 3px;
 }
 
 .dashboard-content {
-    margin-left: 270px;
+    margin-left: 370px;
     margin-bottom: 10px;
 }
 
@@ -38,4 +38,19 @@
 
 .delete-btn:hover {
     background-color: #c82333;
+}
+
+.edit-btn {
+    margin-left: 3px;
+    background-color: #ffc107;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.edit-btn:hover {
+    background-color: #ffcd38;
 }

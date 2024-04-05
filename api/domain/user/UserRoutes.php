@@ -26,6 +26,8 @@ switch ($path) {
     case preg_match('/^\/api\/user\/[0-9]+$/', $path) ? $path : !$path:
         if ($method === 'DELETE') {
             $userController->deleteUser();
+        } else if ($method === 'PUT') {
+            $userController->updateUser();
         } else {
             ErrorResponse::sendError(ErrorCode::METHOD_NOT_ALLOWED);
         }

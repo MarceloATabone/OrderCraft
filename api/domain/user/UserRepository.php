@@ -37,9 +37,9 @@ class UserRepository
 
     public function updateUser($user)
     {
-        $query = "UPDATE users SET first_name = ?, last_name = ?, document = ?, email = ?, phone_number = ?, birth_date = ? WHERE id = ?";
+        $query = "UPDATE users SET first_name = ?, last_name = ?, document = ?, phone_number = ?, birth_date = ? WHERE id = ?";
         $stmt = $this->connection->prepare($query);
-        $stmt->execute([$user->first_name, $user->last_name, $user->document, $user->email, $user->phone_number, $user->birth_date, $user->id]);
+        $stmt->execute([$user->first_name, $user->last_name, $user->document, $user->phone_number, $user->birth_date, $user->id]);
     }
 
     public function deleteUser($userId)

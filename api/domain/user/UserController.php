@@ -26,12 +26,12 @@ class UserController
     public function createUser()
     {
         $data = json_decode(file_get_contents("php://input"));
-        if (!isset($data->first_name) || !isset($data->last_name) || !isset($data->document) || !isset($data->email) || !isset($data->password) || !isset($data->passwordVerify) || !isset($data->phone_number) || !isset($data->birth_date)) {
+        if (!isset($data->first_name) || !isset($data->last_name) || !isset($data->document) || !isset($data->email) || !isset($data->password) || !isset($data->password_verify) || !isset($data->phone_number) || !isset($data->birth_date)) {
             ErrorResponse::sendError(ErrorCode::BAD_REQUEST);
             return;
         }
 
-        $encryptedPassword = $this->secretService->encrypt($data->password, $data->passwordVerify);
+        $encryptedPassword = $this->secretService->encrypt($data->password, $data->password_verify);
 
         if ($encryptedPassword['success']) {
             $data->role_id = 2;
@@ -43,22 +43,24 @@ class UserController
         }
     }
 
-
-
     // Method to update an existing user
-    public function updateUser($data)
+    public function updateUser()
     {
-        $user = new User();
-        $user->id = $data->id;
-        $user->first_name = $data->first_name;
-        $user->last_name = $data->last_name;
-        $user->document = $data->document;
-        $user->email = $data->email;
-        $user->phone_number = $data->phone_number;
-        $user->birth_date = $data->birth_date;
-
-        $this->userRepository->updateUser($user);
-        echo json_encode(array('message' => 'User updated successfully'));
+        $userId = intval(basename($_SERVER['REQUEST_URI']));
+        $requestData = json_decode(file_get_contents('php://input'), true);
+        if (!$userId || !$requestData) {
+            ErrorResponse::sendError(ErrorCode::BAD_REQUEST);
+        } else {
+            $user = new User();
+            $user->id = $userId;
+            $user->first_name = $requestData['first_name'];
+            $user->last_name = $requestData['last_name'];
+            $user->document = $requestData['document'];
+            $user->phone_number = $requestData['phone_number'];
+            $user->birth_date = $requestData['birth_date'];
+            $this->userRepository->updateUser($user);
+            echo json_encode(['message' => 'User updated successfully']);
+        }
     }
 
     // Method to delete a user
