@@ -1,13 +1,16 @@
-<!-- index.php -->
-
 <?php
+session_start();
 
 $page = isset($_GET['page']) ? $_GET['page'] : 'login';
 
-// Enables error display
+// Habilita a exibição de erros
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
+
+$page = isset($_GET['page']) ? $_GET['page'] : 'login';
+
 
 include 'includes/header.php';
 
@@ -24,4 +27,3 @@ switch ($page) {
 }
 
 include 'includes/footer.php';
-?>

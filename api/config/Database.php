@@ -11,10 +11,10 @@ class Database
     {
         Environment::loadEnv();
 
-        $host = "172.30.0.2:5432";// Environment::get('DB_HOST');
-        $db_name = "order_craft";//Environment::get('DB_NAME');
-        $username = "postgres";//Environment::get('DB_USER');
-        $password = "password32145";//Environment::get('DB_PASSWORD');
+        $host = Environment::get('DB_HOST');
+        $db_name = Environment::get('DB_NAME');
+        $username = Environment::get('DB_USER');
+        $password = Environment::get('DB_PASSWORD');
 
 
         try {

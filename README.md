@@ -51,4 +51,3 @@ sudo docker system prune -a
  - frontend IP : 172.30.0.4
 
 
-sudo docker-compose up --build

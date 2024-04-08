@@ -13,17 +13,21 @@ $(document).ready(function () {
             url: 'api/user',
             method: 'GET',
             success: function (response) {
-            
+
                 $('#userList').empty();
-                response.forEach(function (user) {
-                    var listItem = $('<li class="list-group-item d-flex justify-content-between align-items-center">' +
-                        '<button class="btn btn-primary user-button">' + user.first_name + '</button>' +
-                        '<button class="btn btn-warning edit-btn" data-user-id="' + user.id + '"><i class="fas fa-edit"></i></button>' +
-                        '<button class="btn btn-danger delete-btn" data-user-id="' + user.id + '"><i class="fas fa-trash"></i></button>' +
-                        '</li>');
-                    listItem.data('user', user);
-                    $('#userList').append(listItem);
-                });
+                if (Array.isArray(response)) {
+                    response.forEach(function (user) {
+                        response.forEach(function (user) {
+                            var listItem = $('<li class="list-group-item d-flex justify-content-between align-items-center">' +
+                                '<button class="btn btn-primary user-button">' + user.first_name + '</button>' +
+                                '<button class="btn btn-warning edit-btn" data-user-id="' + user.id + '"><i class="fas fa-edit"></i></button>' +
+                                '<button class="btn btn-danger delete-btn" data-user-id="' + user.id + '"><i class="fas fa-trash"></i></button>' +
+                                '</li>');
+                            listItem.data('user', user);
+                            $('#userList').append(listItem);
+                        });
+                    });
+                }
 
             },
             error: function (xhr, status, error) {
