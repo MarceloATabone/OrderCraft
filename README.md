@@ -47,7 +47,5 @@ sudo docker system prune -a
 
 ## 
  - database IP : 172.30.0.2
- - backend IP : 172.30.0.3
- - frontend IP : 172.30.0.4
 
 
