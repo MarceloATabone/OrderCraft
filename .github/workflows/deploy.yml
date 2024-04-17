@@ -37,5 +37,5 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd orderCraft
+            cd OrderCraft
             sudo docker-compose up -d
